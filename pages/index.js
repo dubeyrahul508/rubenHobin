@@ -1146,7 +1146,7 @@ export default function Home() {
                     className="btn btn-primary"
                     onClick={onClickCalCulateCrossNationalCosts}
                   >
-                    Re-calculate
+                    Re-calculate crossNationalCost
                   </button>
                 </div>
               </div>
