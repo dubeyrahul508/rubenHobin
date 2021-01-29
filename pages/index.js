@@ -543,12 +543,26 @@ export default function Home() {
   const [specialCircumstances, setSpecialCircumstances] = useState("");
   const [seperateSettlementChild, setSeperateSettlementChild] = useState(false);
   const [inputList, setInputList] = useState([{ childName: "", childAge: "" }]);
+  const [subTotal, setSubTotal] = useState({
+    husband: "",
+    wife: "",
+    total: "",
+    childBenefits: "",
+  });
+  const [husbandEarningPercentB45, setHusbandEarningPercentB45] = useState("");
+  const [wifeEarningPercentC46, setWifeEarningPercentC46] = useState("");
+  const [valToShow, setValToShow] = useState({
+    husbandResidualResources: "",
+    wifeResidualResources: "",
+    husbandShareInResidualResources: "",
+    wifeShareInResidualResources: "",
+  });
   const [
     effectiveShareOfHouseHoldIncome,
     setEffectiveShareOfHouseHoldIncome,
   ] = useState("");
   // FINAL AMOUNTS
-  const [alimony, setAlimony] = useState("")
+  const [alimony, setAlimony] = useState("");
 
   // HANDLE INPUT FIELD OF CHILDRENS'
   const onChangeChildrenData = (e, index) => {
@@ -721,7 +735,6 @@ export default function Home() {
       Number(wifeDetails.mealVouchers) +
       Number(wifeDetails.companyCar) +
       Number(wifeDetails.tankCard);
-
     // B42 = B41 + C41
     const total = subTotalHusband + subTotalWife;
 
@@ -732,17 +745,24 @@ export default function Home() {
       Number(wifeDetails.childBenefits) +
       Number(husbandDetails.extraChildBenefits) +
       Number(wifeDetails.extraChildBenefits);
+    setSubTotal({
+      ...subTotal,
+      total: total,
+      wife: subTotalWife,
+      husband: subTotalHusband,
+      childBenefits: totalChildBenefits,
+    });
 
     // B45 = 1 / B42 * B41
     const husbandEarningPercent = (1 / total) * subTotalHusband;
+    setHusbandEarningPercentB45(husbandEarningPercent);
 
     // C45 = 1 / B42 * C41
     const wifeEarningPercent = (1 / total) * subTotalWife;
-
+    setWifeEarningPercentC46(wifeEarningPercent);
     // B54 = B51 + B52
     const husbandLivingCost =
       Number(husbandDetails.lumpSum) + Number(husbandDetails.realCost);
-
     // C54 = C51 + C52
     const wifeLivingCost =
       Number(wifeDetails.lumpSum) + Number(wifeDetails.realCost);
@@ -765,6 +785,14 @@ export default function Home() {
     const wifeShareInResidualResources =
       (1 / (husbandResidualResources + wifeResidualResources)) *
       wifeResidualResources;
+
+    setValToShow({
+      ...valToShow,
+      husbandResidualResources: husbandResidualResources,
+      wifeResidualResources: wifeResidualResources,
+      husbandShareInResidualResources: husbandShareInResidualResources,
+      wifeShareInResidualResources: wifeShareInResidualResources,
+    });
 
     // B77 = SUM( B67 : B75 ) + ( B63 * 18.64286 )
     const husbandTotalDays =
@@ -909,7 +937,7 @@ export default function Home() {
       (Number(total_child_share) - Number(wifeDetails.childBenefits)) *
         husbandShareInResidualResources -
       Number(total_child_share) * husbandTotalContriInKind;
-      setAlimony(finalValue);
+    setAlimony(finalValue);
   };
   return (
     <>
@@ -1431,7 +1459,6 @@ export default function Home() {
                   onChange={(e, val) => onChangeSchoolYear(val)}
                   min={0}
                   max={14}
-                  disabled={holidayArrangementIsSchoolYear ? true : false}
                 />
               </div>
             </div>
@@ -1667,7 +1694,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            {seperateSettlementChild && (
+            {!seperateSettlementChild && (
               <div className="row mb-5">
                 <div className="col">
                   <p>
@@ -1704,7 +1731,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-            {seperateSettlementChild && (
+            {!seperateSettlementChild && (
               <div className="row mb-5">
                 <div className="col">
                   <p>
@@ -1739,6 +1766,72 @@ export default function Home() {
                 </div>
               </div>
             )}
+            <div className="row mb-5">
+              <div className="col">
+                <p>
+                  <strong>Husband Sub Total(Income):</strong>
+                </p>
+                <p>
+                  <strong>Wife Sub Total(Income):</strong>
+                </p>
+                <p>
+                  <strong>Total(Income):</strong>
+                </p>
+                <p>
+                  <strong>Total including child benefits(Income):</strong>
+                </p>
+                <p>
+                  <strong>Husband Earning percentage:</strong>
+                </p>
+                <p>
+                  <strong>Wife Earning percentage:</strong>
+                </p>
+                <p>
+                  <strong>Husband Residual Resources:</strong>
+                </p>
+                <p>
+                  <strong>Wife Residual Resources:</strong>
+                </p>
+                <p>
+                  <strong>Husband Share in Residual Resources:</strong>
+                </p>
+                <p>
+                  <strong>Wife Share in Residual Resources:</strong>
+                </p>
+              </div>
+              <div className="col">
+                <p>
+                  <strong>{subTotal.husband}</strong>
+                </p>
+                <p>
+                  <strong>{subTotal.wife}</strong>
+                </p>
+                <p>
+                  <strong>{subTotal.total}</strong>
+                </p>
+                <p>
+                  <strong>{subTotal.childBenefits}</strong>
+                </p>
+                <p>
+                  <strong>{husbandEarningPercentB45}</strong>
+                </p>
+                <p>
+                  <strong>{wifeEarningPercentC46}</strong>
+                </p>
+                <p>
+                  <strong>{valToShow.husbandResidualResources}</strong>
+                </p>
+                <p>
+                  <strong>{valToShow.wifeResidualResources}</strong>
+                </p>
+                <p>
+                  <strong>{valToShow.husbandShareInResidualResources}</strong>
+                </p>
+                <p>
+                  <strong>{valToShow.wifeShareInResidualResources}</strong>
+                </p>
+              </div>
+            </div>
             <div className="row mb-5">
               <div className="col">
                 <p>
