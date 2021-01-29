@@ -5,28 +5,28 @@ import Slider from "@material-ui/core/Slider";
 export default function Home() {
   const avg_percent_wrt_income = {
     1: {
-      2000: 15,
+      "2000": 15,
       "2001-4500": 15.2,
       "4501-6000": 15.4,
       6001: 15.6,
     },
     2: {
-      2000: 11.85,
+      "2000": 11.85,
       "2001-4500": 12.05,
       "4501-6000": 12.25,
       6001: 12.45,
     },
     3: {
-      2000: 9.6,
+      "2000": 9.6,
       "2001-4500": 9.8,
       "4501-6000": 10,
       6001: 10.2,
     },
     4: {
-      2000: 8.7,
+      "2000": 8.7,
       "2001-4500": 8.9,
       "4501-6000": 9.1,
-      6001: 9.3,
+      "6001": 9.3,
     },
   };
   const age_percent_data = {
@@ -866,53 +866,69 @@ export default function Home() {
       case 1:
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[1]["2000"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[1]["2000"], "1 2000")
         } else if (2000 < famIncome && famIncome <= 4500) {
           effective_share_household_income =
             avg_percent_wrt_income[1]["2001-4500"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[1]["2001-4500"], "1 2001-4500")
         } else if (4500 < famIncome && famIncome <= 6000) {
           effective_share_household_income =
             avg_percent_wrt_income[1]["4501-6000"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[1]["4501-6000"], "1 4501-6000")
         } else if (6000 < famIncome) {
           effective_share_household_income = avg_percent_wrt_income[1]["6001"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[1]["6000"], "1 6001")
         }
         break;
       case 2:
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[2]["2000"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[2]["2000"], "1 2000")
         } else if (2000 < famIncome && famIncome <= 4500) {
           effective_share_household_income =
             avg_percent_wrt_income[2]["2001-4500"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[2]["2001-4500"], "1 2001-4500")
         } else if (4500 < famIncome && famIncome <= 6000) {
           effective_share_household_income =
             avg_percent_wrt_income[2]["4501-6000"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[2]["4501-6000"], "1 4501-6000")
         } else if (6000 < famIncome) {
           effective_share_household_income = avg_percent_wrt_income[2]["6001"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[2]["6000"], "1 6001")
         }
         break;
       case 3:
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[3]["2000"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[3]["2000"], "1 2000")
         } else if (2000 < famIncome && famIncome <= 4500) {
           effective_share_household_income =
             avg_percent_wrt_income[3]["2001-4500"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[3]["2001-4500"], "1 2001-4500")
         } else if (4500 < famIncome && famIncome <= 6000) {
           effective_share_household_income =
             avg_percent_wrt_income[3]["4501-6000"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[3]["4501-6000"], "1 4501-6000")
         } else if (6000 < famIncome) {
           effective_share_household_income = avg_percent_wrt_income[3]["6001"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[3]["6000"], "1 6001")
         }
         break;
       case 4:
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[4]["2000"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[4]["2000"], "1 2000")
         } else if (2000 < famIncome && famIncome <= 4500) {
           effective_share_household_income =
             avg_percent_wrt_income[4]["2001-4500"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[4]["2001-4500"], "1 2001-4500")
         } else if (4500 < famIncome && famIncome <= 6000) {
           effective_share_household_income =
             avg_percent_wrt_income[4]["4501-6000"];
+            console.log(effective_share_household_income, avg_percent_wrt_income[4]["4501-6000"], "1 4501-6000")
         } else if (6000 < famIncome) {
           effective_share_household_income = avg_percent_wrt_income[4]["6001"];
+          console.log(effective_share_household_income, avg_percent_wrt_income[4]["6000"], "1 6001")
         }
         break;
     }
