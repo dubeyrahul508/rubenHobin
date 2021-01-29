@@ -859,7 +859,7 @@ export default function Home() {
       totalChildBenefits - Number(wifeDetails.extraChildBenefits);
     setFamilyIncome(famIncome);
     const no_of_children = inputList.filter((val) => val.childName).length;
-
+    console.log(no_of_children, "asdddddddddd")
     // B100
     let effective_share_household_income;
     switch (no_of_children) {
