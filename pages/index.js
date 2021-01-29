@@ -657,7 +657,7 @@ export default function Home() {
   const onChangeHolidayArrIsSchool = () => {
     setHusbandDetails({
       ...husbandDetails,
-      schoolYear: 7,
+      // schoolYear: 7,
       summerVacation: 31,
       christmasBreak: 7,
       easterHolidays: 7,
@@ -666,7 +666,7 @@ export default function Home() {
     });
     setWifeDetails({
       ...wifeDetails,
-      schoolYear: 7,
+      // schoolYear: 7,
       summerVacation: 31,
       christmasBreak: 7,
       easterHolidays: 7,
