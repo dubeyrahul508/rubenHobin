@@ -864,6 +864,7 @@ export default function Home() {
     let effective_share_household_income;
     switch (no_of_children) {
       case 1:
+        console.log("helllo")
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[1]["2000"];
           console.log(effective_share_household_income, avg_percent_wrt_income[1]["2000"], "1 2000")
@@ -881,6 +882,7 @@ export default function Home() {
         }
         break;
       case 2:
+        console.log("helllo")
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[2]["2000"];
           console.log(effective_share_household_income, avg_percent_wrt_income[2]["2000"], "1 2000")
@@ -898,6 +900,7 @@ export default function Home() {
         }
         break;
       case 3:
+        console.log("helllo")
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[3]["2000"];
           console.log(effective_share_household_income, avg_percent_wrt_income[3]["2000"], "1 2000")
@@ -915,6 +918,7 @@ export default function Home() {
         }
         break;
       case 4:
+        console.log("helllo")
         if (famIncome <= 2000) {
           effective_share_household_income = avg_percent_wrt_income[4]["2000"];
           console.log(effective_share_household_income, avg_percent_wrt_income[4]["2000"], "1 2000")
@@ -1860,7 +1864,7 @@ export default function Home() {
             <div className="row mb-5">
               <div className="col">
                 <p>
-                  <strong>Total Contribution in kind:</strong>
+                  <strong>Total Contribution in kind / Family Income:</strong>
                 </p>
               </div>
               <div className="col">
