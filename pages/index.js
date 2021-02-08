@@ -542,7 +542,7 @@ export default function Home() {
   const [familyIncome, setFamilyIncome] = useState("");
   const [specialCircumstances, setSpecialCircumstances] = useState("");
   const [seperateSettlementChild, setSeperateSettlementChild] = useState(false);
-  const [inputList, setInputList] = useState([{ childName: "", childAge: "" }]);
+  const [inputList, setInputList] = useState([{ childName: "", childAge: "", percent: "" }]);
   const [subTotal, setSubTotal] = useState({
     husband: "",
     wife: "",
@@ -551,6 +551,7 @@ export default function Home() {
   });
   const [husbandEarningPercentB45, setHusbandEarningPercentB45] = useState("");
   const [wifeEarningPercentC46, setWifeEarningPercentC46] = useState("");
+  const [correctPercentBasedOnChildAge, setCorrectPercentBasedOnChildAge] = useState([])
   const [valToShow, setValToShow] = useState({
     husbandResidualResources: "",
     wifeResidualResources: "",
@@ -937,19 +938,37 @@ export default function Home() {
         break;
     }
     setEffectiveShareOfHouseHoldIncome(effective_share_household_income);
+
     const share_based_on_child = inputList.map((val) => {
       if (val.childAge > 24) {
+        setInputList([...inputList].map(obj=>{
+          if(obj.childAge===val.childAge){
+            return {
+              ...obj,
+              percent: age_percent_data[24][effective_share_household_income]
+            }
+          }
+        }))
         return (
           (age_percent_data[24][effective_share_household_income] / 100) *
           famIncome
         );
       }
+      setInputList([...inputList].map(obj=>{
+        if(obj.childAge===val.childAge){
+          return {
+            ...obj,
+            percent: age_percent_data[val.childAge][effective_share_household_income]
+          }
+        }
+      }))
       return (
         (age_percent_data[val.childAge][effective_share_household_income] /
           100) *
         famIncome
       );
     });
+    setCorrectPercentBasedOnChildAge(share_based_on_child)
     const total_child_share = share_based_on_child.reduce(
       (sum, val) => sum + val
     );
@@ -1887,6 +1906,22 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            <hr/>
+            <div className="row">
+              <div className="col"><strong>Child Name</strong></div>
+              <div className="col"><strong>Child Age</strong></div>
+              <div className="col"><strong>Child Correct Percentage</strong></div>
+            </div>
+            {
+              inputList.map(val=>
+                <div className="row">
+                  <div className="col">{val.childName}</div>
+                  <div className="col">{val.childAge}</div>
+                  <div className="col">{val.percent}</div>
+                </div>
+              )
+            }
+            <hr/>
             <div className="row mb-5">
               <div className="col">
                 <p>
